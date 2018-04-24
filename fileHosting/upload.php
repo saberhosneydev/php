@@ -30,9 +30,9 @@ if (isset($_POST['submit'])) {
             $fileNameNew = uniqid('', true).".".$fileActualExt;
             $fileDest = 'uploads/'.$fileNameNew;
             move_uploaded_file($fileTmpName, $fileDest);
-            header("Location: index.php?success=1");
+            header("Location: index.php?msg=0");
         }else {
-            echo "error in fileErrror";
+            header("Location: index.php?successmsg=1");
         }
 }
 
