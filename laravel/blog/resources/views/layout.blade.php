@@ -8,12 +8,13 @@
 
   <!-- FONT
       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-      {{-- <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> --}}
+      
 
   <!-- CSS
       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
       <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
       <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+      <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
   </head>
   <body>
