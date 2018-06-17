@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'PostsController@index');
-// Route::get('/posts/{post}', 'PostsController@show');
-Route::get('/posts/create', 'PostsController@create');
+Route::get('/posts/{slug}', 'PostsController@show');
+Route::get('/category/{category}', 'PostsController@catShow');
+Route::get('/category', 'PostsController@catIndex');
+Route::get('/admin/create', 'PostsController@create');
 Route::post('/posts', 'PostsController@store');

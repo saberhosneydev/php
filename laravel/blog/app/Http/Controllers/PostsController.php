@@ -8,12 +8,23 @@ use Illuminate\Http\Request;
 class PostsController extends Controller
 {
     public function index () {
-    	$posts = post::all();
+    	$posts = post::latest()->get();
     	$hotpost = post::where('hot', '1')->orderBy('id', 'desc')->first();
     	return view('posts.index', compact('posts', 'hotpost'));
     }
-    public function show (Post $post) {
+    public function show ($slug) {
+    	$post = post::where('slug', $slug)->first();
     	return view('posts.show', compact('post'));
+    }
+    public function catShow ($category) {
+        $posts = post::where('category', $category)->get();
+        return view('category.show', compact('posts'));
+    }
+    public function catIndex () {
+        $categories = post::pluck('category');
+        $collection = collect($categories);
+        $cats = $collection->unique()->values()->all();
+        return view('category.index', compact('cats'));
     }
     public function create () {
     	return view('posts.create');
@@ -36,6 +47,7 @@ class PostsController extends Controller
     	$post->category = request('category');
     	$post->image = request('image');
     	$post->hot = request('hot');
+    	$post->slug = str_slug(request('title'), '-');
 
     	$post->save();
 
