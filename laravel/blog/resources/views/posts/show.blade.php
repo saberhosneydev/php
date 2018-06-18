@@ -19,6 +19,7 @@
 	<div class="col"></div>
 	<div class="col-8">
 		<h1>{{$post->title}}</h1>
+		<h3>{{ $post->user->name }}</h3>
 		<p>{{$post->body}}</p>
 	</div>
 	<div class="col"></div>
@@ -27,11 +28,11 @@
 
 <div class="row">
 	<div class="col"></div>
-	<div class="col-8 card">
+	<div class="col-8 card-body">
 		@foreach($post->comments as $comment)
 		<div class="media">
 			<div class="media-body">
-				<h5 class="mt-0">UserName</h5>
+				<h5 class="mt-0">{{$comment->user->name}}</h5>
 				<small class="mt-0">{{$comment->created_at->diffForHumans()}}</small><br>
 				<b>{{ $comment->body }}</b>
 			</div>

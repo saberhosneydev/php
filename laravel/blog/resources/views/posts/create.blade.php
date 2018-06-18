@@ -5,6 +5,7 @@
 <div class="row">
 	<div class="col"></div>
 	<div class="col-6">
+		<h2>Create a new post !</h2>
 		<form method="POST" action="/posts">
 			{{ csrf_field() }}
 			<div class="form-group">

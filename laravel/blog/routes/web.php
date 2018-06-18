@@ -18,7 +18,9 @@ Route::get('/category', 'PostsController@catIndex');
 Route::get('/admin/create', 'PostsController@create');
 Route::post('/posts', 'PostsController@store');
 Route::post('/posts/{slug}/comments', 'CommentsController@store');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/search', 'PostsController@search');
+Route::get('/register' , 'RegisterationController@index');
+Route::post('/register' , 'RegisterationController@create');
+Route::get('/login', 'SeasionsController@index');
+Route::post('/login', 'SeasionsController@create');
+Route::get('/logout', 'SeasionsController@destroy');
