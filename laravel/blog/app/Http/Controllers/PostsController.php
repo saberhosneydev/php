@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class PostsController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth')->except(['index', 'show', 'catIndex', 'catShow', 'search']);
+        $this->middleware('auth')->except(['index', 'show', 'catIndex', 'catShow', 'search', 'searchIndex']);
     }
     public function index () {
     	$posts = post::latest()->get();
@@ -71,6 +71,11 @@ class PostsController extends Controller
     	// dd(request()->all());
     }
     public function search() {
-
+        $title = request('search');
+        $posts = post::where('title', $title)->get();
+        return view('posts.sindex', compact('posts'));
+    }
+    public function searchIndex() {
+        return view('posts.sindex');
     }
 }

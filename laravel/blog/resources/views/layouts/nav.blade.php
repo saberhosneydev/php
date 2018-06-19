@@ -9,7 +9,7 @@
   </div>
   
   <div class="col">
-    <form class="form-inline my-2 my-lg-0" method="POST" action="/search/{{ request('search') }}">
+    <form class="form-inline my-2 my-lg-0" method="POST" action="/search">
       {{csrf_field()}}
       <input  style="width: 250px;" class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
