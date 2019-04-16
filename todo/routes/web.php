@@ -13,3 +13,4 @@
 Route::get('/', 'PagesController@welcome')->name('welcome');
 Auth::routes();
 Route::resource('home/projects', 'ProjectsController');
+Route::resource('home/tasks', 'TasksController');

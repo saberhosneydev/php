@@ -39,10 +39,10 @@ class TasksController extends Controller
     {
         Task::create([
             'name' => $request->name,
-            'desc' => $request->desc,
-            'user_id' => auth()->id()
+            'completed' => 0,
+            'project_id' => $request->projectId
         ]);
-        return redirect('/home');
+        return redirect('/home/projects/'.$request->projectId);
     }
 
     /**
