@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
 	protected $fillable = [
-        'name', 'project_id'
+        'name', 'board_id'
     ];
 	public function project(){
 		return $this->belongsTo('App\Project');

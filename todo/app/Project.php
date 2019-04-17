@@ -12,8 +12,8 @@ class Project extends Model
 	public function user(){
 		return $this->belongsTo('App\User');
 	}
-	public function tasks(){
-		return $this->hasMany('App\Task');
+	public function boards(){
+		return $this->hasMany('App\Board');
 	}
 	public function getFromDateAttribute($value) {
 		return \Carbon\Carbon::parse($value)->format('d-M-Y');
