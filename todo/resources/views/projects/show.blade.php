@@ -43,7 +43,7 @@
 					<div class="field">
 						@foreach ($board->tasks as $task)
 						<p class="control">
-							<div class="b-checkbox is-info is-circular">
+							<div class="b-checkbox is-danger is-circular">
 								<input id="checkbox" class="styled" type="checkbox">
 								<label for="checkbox">
 									{{$task->name}}
@@ -57,9 +57,6 @@
 						<p class="is-size-6 has-text-weight-bold">No Tasks yet .</p>
 					</div>
 					@endif
-				</p>
-				<p class="subtitle">
-					Jeff Atwood
 				</p>
 			</div>
 			<footer class="card-footer">
