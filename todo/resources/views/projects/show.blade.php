@@ -118,12 +118,19 @@
 			<div class="content">
 				<p class="title">{{$board->name}}</p>
 				@if($board->tasks->count())
+				@foreach($board->tasks as $task)
 				<div class="box has-ribbon">
-					<div class="ribbon is-warning">Default</div>
+					@if($task->priorty === "Normal")
+					<div class="ribbon is-info">{{$task->priorty}}</div>
+					@elseif($task->priorty === "Need Focus")
+					<div class="ribbon is-warning">{{$task->priorty}}</div>
+					@else
+					<div class="ribbon is-danger">{{$task->priorty}}</div>
+					@endif
 					<div class="content">
 						<div class="field" style="margin-top: 15px;">
-							<input class="is-checkradio has-background-color is-danger is-large" id="exampleCheckboxLarge" type="checkbox" name="exampleCheckboxLarge" checked="checked">
-							<label for="exampleCheckboxLarge" style="font-size: 1.4rem;">Doing my shit today for doing such thing</label>
+							<input class="is-checkradio  is-large" id="{{$task->id}}" type="checkbox"  {{ $task->completed === 1 ? "checked" : "" }}>
+							<label for="{{$task->id}}" style="font-size: 1.4rem;">{{$task->name}}</label>
 						</div>
 
 					</div>
@@ -145,31 +152,42 @@
 						</a>
 					</nav>
 				</div>
+				@endforeach
 				@endif
 				<div class="box">
 					<div class="content">
-						<div class="field">
-							<input type="text" class="input" name="name" placeholder="task detail">
-						</div>
-						<div class="field" style="padding-left: 5px;">
-							<label class="is-inline has-text-weight-bold" for="prior"  style="position:relative;top: 5px;margin-right: 25px;">Priorty : </label>
-							<div class="control has-icons-left is-inline">
-								<div class="select">
-									<select id="prior">
-										<option selected class="has-text-info">Normal</option>
-										<option class="has-text-warning">Need Focus</option>
-										<option class="has-text-danger">Emergeny</option>
-									</select>
-								</div>
-								<span class="icon is-small is-left">
-									<i class="fas fa-exclamation"></i>
-								</span>
+						<form action="{{route('tasks.store')}}" method="POST">
+							@csrf
+							<input type="hidden" name="boardId" value="{{$board->id}}">
+							<input type="hidden" name="projectId" value="{{$board->project->id}}">
+							<div class="field">
+								<input type="text" class="input" name="name" placeholder="task detail">
 							</div>
+							<div class="field" style="padding-left: 5px;">
+								<label class="is-inline has-text-weight-bold" for="prior"  style="position:relative;top: 5px;margin-right: 25px;left: 2px;">Priorty : </label>
+								<div class="control has-icons-left is-inline">
+									<div class="select">
+										<select id="prior" name="priorty">
+											<option selected class="has-text-info">Normal</option>
+											<option class="has-text-warning">Need Focus</option>
+											<option class="has-text-danger">Emergeny</option>
+										</select>
+									</div>
+									<span class="icon is-small is-left">
+										<i class="fas fa-exclamation"></i>
+									</span>
+								</div>
 
-						</div>
+							</div>
+							<div class="field">
+								<input class="is-checkradio" id="taskCompleted{{$board->id}}" type="checkbox" name="taskCompleted">
+								<label for="taskCompleted{{$board->id}}">Is task completed ?</label>
+							</div>
 							<div class="field">
 								<button class="button" style="width: 100%;">Create</button>
 							</div>
+						</form>
+
 					</div>
 				</div>
 			</div>

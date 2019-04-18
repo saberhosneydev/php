@@ -37,10 +37,16 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->taskCompleted == "on") {
+            $taskCompleted = 1;
+        }else {
+            $taskCompleted = 0;
+        }
         Task::create([
             'name' => $request->name,
-            'completed' => 0,
-            'board_id' => $request->boardId
+            'completed' => $taskCompleted,
+            'board_id' => $request->boardId,
+            'priorty' => $request->priorty
         ]);
         return redirect('/home/projects/'.$request->projectId);
     }
@@ -89,8 +95,5 @@ class TasksController extends Controller
     {
         $task->delete();
         return redirect('/home');
-    }
-    public function test() {
-        return view('test');
     }
 }

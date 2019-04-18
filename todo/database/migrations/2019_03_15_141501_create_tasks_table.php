@@ -18,6 +18,7 @@ class CreateTasksTable extends Migration
             $table->integer('board_id');
             $table->string('name');
             $table->boolean('completed')->default(false);
+            $table->string('priorty');
             $table->timestamps();
         });
     }
