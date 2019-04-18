@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('/css/bulma-radio-checkbox.css') }}">
 @endsection
 @section('content')
-<div class="columns">
+{{-- <div class="columns">
 	<div class="column is-half is-offset-3">
 		<nav class="breadcrumb" aria-label="breadcrumbs">
 			<ul>
@@ -100,5 +100,88 @@
 			<button class="button">Delete the project ?</button>
 		</form>
 	</div>
+</div> --}}
+<div class="columns">
+	<div class="column is-10 is-offset-1">
+		<div class="field">
+			<nav class="breadcrumb" aria-label="breadcrumbs">
+				<ul>
+					<li><a href="/">{{ config('app.name') }}</a></li>
+					<li><a href="/home">Home</a></li>
+					<li><a href="/home/projects">Projects</a></li>
+					<li class="is-active"><a href="/home/projects">{{$project->name}}</a></li>
+				</ul>
+			</nav>
+		</div>
+		@foreach($project->boards as $board)
+		<div class="box has-background-white-ter" style="width: 33%;display: inline-block;">
+			<div class="content">
+				<p class="title">{{$board->name}}</p>
+				@if($board->tasks->count())
+				<div class="box has-ribbon">
+					<div class="ribbon is-warning">Default</div>
+					<div class="content">
+						<div class="field" style="margin-top: 15px;">
+							<input class="is-checkradio has-background-color is-danger is-large" id="exampleCheckboxLarge" type="checkbox" name="exampleCheckboxLarge" checked="checked">
+							<label for="exampleCheckboxLarge" style="font-size: 1.4rem;">Doing my shit today for doing such thing</label>
+						</div>
+
+					</div>
+					<nav class="level is-mobile">
+						<a class="level-item" aria-label="reply">
+							<span class="icon is-small">
+								<i class="fas fa-trash" aria-hidden="true"></i>
+							</span>
+						</a>
+						<a class="level-item" aria-label="retweet">
+							<span class="icon is-small">
+								<i class="fas fa-retweet" aria-hidden="true"></i>
+							</span>
+						</a>
+						<a class="level-item" aria-label="like">
+							<span class="icon is-small">
+								<i class="fas fa-heart" aria-hidden="true"></i>
+							</span>
+						</a>
+					</nav>
+				</div>
+				@endif
+				<div class="box">
+					<div class="content">
+						<div class="field">
+							<input type="text" class="input" name="name" placeholder="task detail">
+						</div>
+						<div class="field" style="padding-left: 5px;">
+							<label class="is-inline has-text-weight-bold" for="prior"  style="position:relative;top: 5px;margin-right: 25px;">Priorty : </label>
+							<div class="control has-icons-left is-inline">
+								<div class="select">
+									<select id="prior">
+										<option selected class="has-text-info">Normal</option>
+										<option class="has-text-warning">Need Focus</option>
+										<option class="has-text-danger">Emergeny</option>
+									</select>
+								</div>
+								<span class="icon is-small is-left">
+									<i class="fas fa-exclamation"></i>
+								</span>
+							</div>
+
+						</div>
+							<div class="field">
+								<button class="button" style="width: 100%;">Create</button>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		@endforeach
+		<form action="{{route('boards.store')}}" method="POST">
+			@csrf
+			<input type="hidden" name="projectId" value="{{$project->id}}">
+			<input class="input" type="text" name="name" placeholder="New board ?" style="width: 50%;">
+			<button class="button">Submit</button>
+		</form>
+	</div>
+
 </div>
 @endsection
