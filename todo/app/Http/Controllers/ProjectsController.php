@@ -40,6 +40,9 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+        'name' => 'required|max:14'
+        ]);
         $project = Project::create([
             'name' => $request->name,
             'user_id' => auth()->id()
@@ -89,6 +92,7 @@ class ProjectsController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect('/home/projects');
     }
 }

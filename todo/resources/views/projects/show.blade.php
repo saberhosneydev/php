@@ -96,6 +96,12 @@
 			</form>
 		</div>
 		@endif
+
+		<form action="/home/projects/{{$project->id}}" method="POST">
+			@csrf
+			@method('DELETE')
+			<button class="button">Delete the project ?</button>
+		</form>
 	</div>
 </div>
 @endsection

@@ -4,6 +4,7 @@
   <title>{{ config('app.name') }}</title>
   <link rel="stylesheet" href="{{ asset('/css/bulma.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/bulma-extensions.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/index.css') }}">
   <script defer src="{{asset('/js/fontawesome.js')}}"></script>
   @yield('customHeader')
 </head>
