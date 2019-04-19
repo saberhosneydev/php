@@ -15,3 +15,4 @@ Auth::routes();
 Route::resource('home/projects', 'ProjectsController');
 Route::resource('home/tasks', 'TasksController');
 Route::resource('home/boards', 'BoardsController');
+Route::patch('/tasks/completed', 'TasksController@completed')->name('tasks.completed');

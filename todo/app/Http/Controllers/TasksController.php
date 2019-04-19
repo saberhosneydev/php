@@ -94,6 +94,17 @@ class TasksController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
-        return redirect('/home');
+        return back();
+    }
+    public function completed(Task $task) {
+        if (request()->completed == "on") {
+            $completed = 1;
+        }else {
+            $completed = 0;
+        }
+        $task->find(request()->taskId)->update([
+            'completed' => $completed
+        ]);
+        return back();
     }
 }

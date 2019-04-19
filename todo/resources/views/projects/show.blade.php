@@ -129,27 +129,42 @@
 					@endif
 					<div class="content">
 						<div class="field" style="margin-top: 15px;">
-							<input class="is-checkradio  is-large" id="{{$task->id}}" type="checkbox"  {{ $task->completed === 1 ? "checked" : "" }}>
-							<label for="{{$task->id}}" style="font-size: 1.4rem;">{{$task->name}}</label>
+							<form action="{{route('tasks.completed')}}" method="POST">
+								@csrf
+								@method('PATCH')
+								<input type="hidden" name="taskId" value="{{$task->id}}">
+								<input class="is-checkradio  is-large" id="{{$task->id}}" type="checkbox"  {{ $task->completed === 1 ? "checked" : "" }} name="completed" onchange="this.form.submit()">
+									<label for="{{$task->id}}" style="font-size: 1.4rem;{{ $task->completed === 1 ? "text-decoration: line-through;" : "" }}">{{$task->name}}</label>
+							</form>
 						</div>
 
 					</div>
 					<nav class="level is-mobile">
-						<a class="level-item" aria-label="reply">
-							<span class="icon is-small">
-								<i class="fas fa-trash" aria-hidden="true"></i>
-							</span>
-						</a>
-						<a class="level-item" aria-label="retweet">
-							<span class="icon is-small">
-								<i class="fas fa-retweet" aria-hidden="true"></i>
-							</span>
-						</a>
-						<a class="level-item" aria-label="like">
-							<span class="icon is-small">
-								<i class="fas fa-heart" aria-hidden="true"></i>
-							</span>
-						</a>
+						<form action="/home/tasks/{{$task->id}}" method="POST" id="deleteTask{{$task->id}}">
+							@csrf
+							@method('DELETE')
+							<a class="level-item" aria-label="reply" onclick="document.getElementById('deleteTask' + {{$task->id}}).submit()">
+								<span class="icon is-small">
+									<i class="fas fa-trash" aria-hidden="true"></i>
+								</span>
+							</a>
+						</form>
+						<form action="">
+							<a class="level-item" aria-label="retweet">
+								<span class="icon is-small">
+									<i class="fas fa-retweet" aria-hidden="true"></i>
+								</span>
+							</a>
+						</form>
+						<form action="">
+							<a class="level-item" aria-label="like">
+								<span class="icon is-small">
+									<i class="fas fa-heart" aria-hidden="true"></i>
+								</span>
+							</a>
+						</form>
+
+
 					</nav>
 				</div>
 				@endforeach
