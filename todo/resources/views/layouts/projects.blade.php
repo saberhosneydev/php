@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="{{ asset('/css/bulma.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/bulma-extensions.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/index.css') }}">
+  <script src="{{asset('/js/jquery.js')}}"></script>
   <script defer src="{{asset('/js/fontawesome.js')}}"></script>
   @yield('customHeader')
 </head>
@@ -42,5 +43,6 @@
 </nav>
 
 @yield('content')
+@yield('customFooter')
 </body>
 </html>

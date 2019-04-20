@@ -18,23 +18,34 @@
 			</div>
 			<div class="field">
 				<button class="button is-info">
-				Create
-			</button>
+					Create
+				</button>
 			</div>
 
 		</form>
-<div class="field">
-	@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-</div>
+		<div class="field">
+			@if ($errors->any())
+			<div class="is-danger">
+					@foreach ($errors->all() as $error)
+					<div class="notification is-danger">
+						<button class="delete"></button>
+						{{$error}}
+					</div>
+					@endforeach
+			</div>
+			@endif
+		</div>
 	</div>
 </div>
 
+@endsection
+
+@section('customFooter')
+<script>
+	$(document).ready(function() {
+		$('.delete').click(function(){
+			$('.notification').css("display", "none");
+		});
+	});
+</script>
 @endsection

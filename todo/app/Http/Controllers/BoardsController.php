@@ -71,9 +71,15 @@ class BoardsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Board $board)
     {
-        //
+        $request->validate([
+            'boardEdit' => 'required|min:5|max:20'
+        ]);
+        $board->update([
+            'name' => $request->boardEdit
+        ]);
+        return back();
     }
 
     /**

@@ -82,7 +82,13 @@ class TasksController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $request->validate([
+        'taskEdit' => 'required|min:5'
+        ]);
+        $task->update([
+            'name' => $request->taskEdit
+        ]);
+        return back();
     }
 
     /**
