@@ -74,7 +74,7 @@ class BoardsController extends Controller
     public function update(Request $request, Board $board)
     {
         $request->validate([
-            'boardEdit' => 'required|min:5|max:20'
+            'boardEdit' => 'required|min:3|max:20'
         ]);
         $board->update([
             'name' => $request->boardEdit

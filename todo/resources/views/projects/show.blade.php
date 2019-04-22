@@ -182,7 +182,6 @@
 @section('customFooter')
 <script>
 	$(document).ready(function(){
-
 		$('.taskupdateid').click(function(){
 			var id = $(this).attr('id');
 			var formId = "TaskUpdate" + id;
