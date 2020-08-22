@@ -3,21 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SaberHosneyDev's Blog</title>
     <link rel="stylesheet" href="/assets/css/output.css">
     <link rel="stylesheet" href="/assets/css/icons.css">
+    <meta name="title" content="Saber Hosney - About">
+<meta name="description" content="SaberHosneyDev personal website, you can find information, tips, articles, and more !">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shdev.codes/">
+<meta property="og:title" content="Saber Hosney - About">
+<meta property="og:description" content="SaberHosneyDev personal website, you can find information, tips, articles, and more !">
+<meta property="og:image" content="https://shdev.codes/images/debuger.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shdev.codes/">
+<meta property="twitter:title" content="Saber Hosney - About">
+<meta property="twitter:description" content="SaberHosneyDev personal website, you can find information, tips, articles, and more !">
+<meta property="twitter:image" content="https://shdev.codes/images/debuger.png">
 </head>
 <body>
     <?php include("layouts/header.html");?>
     <?php 
-        $data = false;
         if(isset($_GET['page'])){
             switch ($_GET['page']) {
                 case 'about':
                     include("pages/about.html");
                     break;
                 case 'article':
-                    require("article.php");
+                    include("article.php");
+                    break;
+                case 'home':
+                    include("home.php");
                     break;
                 default:
                     include("pages/404.html");
@@ -26,26 +42,7 @@
         }else {
             $data = scandir("articles");
         }
-        function getFile($filename){
-            $file = file_get_contents("articles/$filename");
-            return json_decode($file, true);
-        }
     ?>
-    <?php if($data): ?>
-        <div class="w-8/12 m-auto text-center lg:text-left">
-        <?php for($i=2; $i < count($data); $i++): ?>
-    <div class="article mt-5 mb-5 grid gap-4 grid-cols-3 lg:grid-cols-4">
-        <img src="../assets/images/<?php echo getFile($data[$i])['image']; ?>" alt="" class="hover:opacity-75 rounded col-span-1 hidden lg:block">
-        <div class="input-form  col-span-4 lg:col-span-3">
-            <a href="/<?php echo getFile($data[$i])['slug']; ?>.html" class="text-xl text-blue-600"><?php echo getFile($data[$i])['title']; ?></a>
-            <p class="text-sm text-blue-900">created at: <span><?php echo getFile($data[$i])['date']; ?></span> - Category: <span><?php echo getFile($data[$i])['category']; ?></span></p>
-            <p class="text-md truncate"><?php echo getFile($data[$i])['content']; ?></p>
-        </div>
-    </div>
-        <?php endfor; ?>
-    </div>
-        
-    <?php endif; ?>
 
 <?php include("layouts/footer.html");?>
 </body>

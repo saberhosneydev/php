@@ -1,10 +1,12 @@
 RewriteEngine On
+RewriteRule ^$ /index.php?page=home [L]
 RewriteRule ^([^/]*)/([^/]*)/([^/]*)\.html$ /index.php?date=$1_$2&slug=$3&page=article [L]
-RewriteRule ^about /index.php?page=about [L]
+RewriteRule ^about\.html /index.php?page=about [L]
+RewriteRule ^login\.html /dashboard/index.php [L]
+RewriteRule ^dashboard\.html /dashboard/dashboard.php [L]
 ErrorDocument 404 /index.php?page=404
 #//Prevent viewing of .htaccess file
 <Files .htaccess>
 order allow,deny
 deny from all
 </Files>
- 

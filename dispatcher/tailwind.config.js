@@ -1,7 +1,12 @@
 module.exports = {
   purge: {
-    enabled: false,
-    content: ['./layouts/*.html'],
+    enabled: true,
+    content: [
+      './layouts/*.html',
+      './pages/*.html',
+      './*.php',
+      './dashboard/*.php'
+    ],
   },
   theme: {
     extend: {},
@@ -9,7 +14,6 @@ module.exports = {
       sm: '640px',
       md: '768px',
       lg: '1024px',
-      xl: '1280px',
     },
   },
   variants: {},
