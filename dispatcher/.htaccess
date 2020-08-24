@@ -4,6 +4,8 @@ RewriteRule ^([^/]*)/([^/]*)/([^/]*)\.html$ /index.php?date=$1_$2&slug=$3&page=a
 RewriteRule ^about\.html /index.php?page=about [L]
 RewriteRule ^login\.html /dashboard/index.php [L]
 RewriteRule ^dashboard\.html /dashboard/dashboard.php [L]
+RewriteRule ^media/([^/]*)/([^/]*)$ /assets/$1/$2 [L]
+RewriteRule ^operationRoom /handle.php [L]
 ErrorDocument 404 /index.php?page=404
 #//Prevent viewing of .htaccess file
 <Files .htaccess>

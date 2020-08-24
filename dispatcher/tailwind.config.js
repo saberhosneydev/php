@@ -5,7 +5,7 @@ module.exports = {
       './layouts/*.html',
       './pages/*.html',
       './*.php',
-      './dashboard/*.php'
+      './dashboard/index.php'
     ],
   },
   theme: {

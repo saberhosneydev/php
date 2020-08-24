@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SaberHosneyDev's Blog</title>
     <link rel="stylesheet" href="/assets/css/output.css">
-    <link rel="stylesheet" href="/assets/css/icons.css">
     <meta name="title" content="Saber Hosney - About">
 <meta name="description" content="SaberHosneyDev personal website, you can find information, tips, articles, and more !">
 
