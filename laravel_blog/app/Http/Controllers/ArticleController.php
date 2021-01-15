@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
-class ArticlesController extends Controller
+
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +21,11 @@ class ArticlesController extends Controller
         $articles = Article::all();
         return view("dashboard", ['articles' => $articles]);
     }
-
+    public function listUserArticles()
+    {
+        $articles = Article::where('user_id', Auth::user()->id)->get();
+        return view("dashboard", ['articles' => $articles]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -27,7 +33,8 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        $categories = Category::all();
+        return view('articles.create', ['categories' => $categories]);
     }
 
     /**
@@ -41,13 +48,14 @@ class ArticlesController extends Controller
         $validated = $request->validate([
             'title' => 'required|unique:articles',
             'content' => 'required',
-            'featuredImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'featuredImage' => 'required|image|mimes:jpeg,png,jpg,webp,bmp|max:4096|file',
             'user_id' => 'required',
             'summary' => 'required|max:300',
             'category_id' => 'required'
         ]);
         $validated['slug'] = Str::slug($validated['title'], '-');
-        $validated['featuredImage'] = $request->featuredImage->store("featured_images");
+        $filename = substr($request->featuredImage->store("public/featured_images"), 7);
+        $validated['featuredImage'] = $filename;
         $article = Article::create($validated);
         return redirect()->route('dashboard');
     }
@@ -60,7 +68,7 @@ class ArticlesController extends Controller
      */
     public function show(Category $category, Article $article)
     {
-        return view('articles.show', ['category' => $category, 'article' => $article]);
+        return view('articles.show', ['article' => $article]);
     }
 
     /**

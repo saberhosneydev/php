@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,12 +17,25 @@ use App\Http\Controllers\ArticlesController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/sample', function () {
+    return view('pages.sample');
+});
 
-Route::get('/dashboard', [ArticlesController::class , 'index'])->middleware(['auth'])->name('dashboard');
+
 
 require __DIR__.'/auth.php';
 
+Route::get('/dashboard', [ArticleController::class , 'listUserArticles'])->name('dashboard')->middleware(['auth']);
 
-Route::get('/dashboard/new/article', [ArticlesController::class, 'create'])->middleware(['auth'])->name('newArticle');
-Route::post('/articles', [ArticlesController::class, 'store'])->middleware(['auth'])->name('storeArticle');
-Route::get('/{category:name}/{article:slug}', [ArticlesController::class, 'show'])->name('showArticle');
+Route::prefix('{category:name}')->group(function () {
+    Route::get('{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
+    Route::get('/', [CategoryController::class, 'show'])->name('category.show');
+});
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('dashboard')->group(function () {
+        Route::get('new/article', [ArticleController::class, 'create'])->name('articles.create');
+        Route::post('new/article', [ArticleController::class, 'store'])->name('articles.store');
+    });
+});
