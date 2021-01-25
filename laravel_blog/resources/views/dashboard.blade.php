@@ -5,7 +5,13 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="my-12">
+        @if (!Auth::user()->phoneVerifed)
+        <div class="max-w-xl bg-red-200 mx-auto py-3 px-4">
+            <p class="font-sans text-red-700">Please verify your phone number <a href="{{route('account.settings')}}"
+                    class="underline font-semibold">here</a></p>
+        </div>
+        @endif
         @if(count($articles) > 0)
         @foreach($articles as $article)
         <div class="max-w-xl px-10 my-4 py-6 bg-white rounded-lg shadow-md mx-auto">

@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone_number')->unique();
-            $table->boolean('Verify');
-            $table->string('VerifyMethod');
+            $table->boolean('phoneVerified')->default(false);
+            $table->string('TwoFactorAuth')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
