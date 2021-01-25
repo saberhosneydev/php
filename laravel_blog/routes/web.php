@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,5 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('new/article', [ArticleController::class, 'create'])->name('articles.create');
         Route::post('new/article', [ArticleController::class, 'store'])->name('articles.store');
+        Route::get('account/settings', [UserController::class, 'edit'])->name('account.settings');
+        Route::post('account/settings', [UserController::class, 'update'])->name('account.settings.update');
     });
 });
